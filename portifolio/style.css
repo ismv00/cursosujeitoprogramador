@@ -66,8 +66,43 @@ body {
   border-radius: 4px;
   font-size: 18px;
   font-weight: bold;
+  transition: 0.9s;
+}
+.call-to-action:hover {
+  transform: scale(1.1);
 }
 .main a {
   text-decoration: none;
   color: #181818;
+}
+
+/* fim main  */
+
+/* Inicio About */
+.about {
+  background-color: #ffffff;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about div {
+  max-width: 50%;
+  padding-right: 40px;
+}
+
+.about img {
+  max-width: 450px;
+  border-radius: 8px;
+}
+
+.about div h2 {
+  font-size: 32px;
+  margin-bottom: 14px;
 }
