@@ -9,6 +9,10 @@ body {
   font-family: "roboto", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .nav {
   background-color: #181818;
   height: 80px;
@@ -147,8 +151,104 @@ body {
   margin-right: 0.5%;
   opacity: 0.8;
   transition: 0.9s;
+
+  border-radius: 8px;
 }
 
 .projects img:hover {
   opacity: 1;
+}
+
+.action {
+  background-color: #181818;
+  border: 0;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 18px;
+  color: #ffffff;
+  margin-top: 18px;
+  cursor: pointer;
+}
+.action a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* FIM Projetos */
+
+/* Inicio Footer */
+footer {
+  width: 100%;
+  background-color: #181818;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+}
+footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer p {
+  margin-left: 12px;
+}
+/* FIM Footer */
+
+/*RESPONSIVIDADE*/
+
+@media (max-width: 1050px) {
+  /*incio main*/
+  .main h1 {
+    font-size: 45px;
+  }
+  .main p {
+    font-size: 18px;
+  }
+
+  .main {
+    background-size: cover;
+  }
+  /*fim main*/
+
+  /*Inicio Sobre*/
+  .about {
+    flex-direction: column;
+    padding-top: 80px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  .about div {
+    max-width: 80%;
+  }
+  .about div h2 {
+    font-size: 45px;
+  }
+  .about img {
+    width: 80%;
+    margin-top: 30px;
+  }
+  /**Fim Sobre */
+
+  /**Inicio Projetos */
+  .projects img {
+    width: 27.5%;
+  }
+  /**Fim Projetos */
+  /**Inicio Footer */
+  footer {
+    flex-direction: column;
+  }
+
+  footer h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  footer p {
+    margin: 0;
+  }
+  /**Fim Footer */
 }
