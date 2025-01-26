@@ -85,3 +85,31 @@ inpyt[type="text"]:focus {
   outline: 0;
   border: 1px solid #a1a1a1;
 }
+
+input[type="submit"] {
+  width: 320px;
+  margin-top: 10px;
+  height: 30px;
+  border: 0;
+  background-color: #3c96ed;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.infobox {
+  height: 60px;
+  background-color: #fff;
+  border: 1px solid rgb(236, 234, 234);
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infobox p a {
+  font-weight: bold;
+  user-select: none;
+}
