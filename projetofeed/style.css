@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "roboto", sans-serif
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #000;
+    height: 80px;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 14px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h2 {
+   padding-top: 20px;
+}
+
+section {
+    width: 100%;
+    background-color: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+section .feed {
+    margin-bottom: 30px;
+}
+
+section .feed .container {
+    width: 100%;
+   
+}
+
+section .feed .container .info-profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 0;
+}
+
+section .feed .container .info-profile img {
+    height: 80px;
+    border-radius: 50%;
+    margin: 0;
+}
+
+section .feed .container .info-profile p {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
+    margin-left: 15px;
+}
+
+section .feed .container .feed-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+section .feed .container .feed-action {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 0;
+}
+
+section .feed .container .feed-action .comentar {
+    margin-left: 8px;
+}
+
+section .feed .container .feed-action a:hover {
+    cursor: pointer;
+}
