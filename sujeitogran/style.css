@@ -5,12 +5,18 @@
 }
 
 a {
-  color: #3c96ed;
+  color: var(--button-primary);
   text-decoration: none;
 }
 
 body {
-  background: #fafafa;
+  --background: #fafafa;
+  --white: #fff;
+  --black: #000;
+  --button-primary: #0095f6;
+  --border-primary: #e6e6e6;
+
+  background: var(--background);
   width: 100%;
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -47,8 +53,8 @@ body {
   padding-left: 20px;
 }
 .login-panel {
-  background: #fff;
-  border: 1px solid #e6e6e6;
+  background: var(--white);
+  border: 1px solid var(--border-primary);
   text-align: center;
   padding: 20px 0;
 }
@@ -64,26 +70,26 @@ form {
 
 input[type="password"],
 input[type="text"] {
-  background-color: #ffffff;
-  border: 1px solid rgb(236, 234, 234);
+  background-color: var(--white);
+  border: 1px solid var(--border-primary);
   height: 40px;
   border-radius: 4px;
   margin-top: 10px;
   padding: 10px;
   width: 320px;
   font-size: 13px;
-  color: #000000;
+  color: var(--black);
 }
 
 input[type="password"]::placeholder,
 input[type="text"]::placeholder {
-  color: rgb(165, 164, 164);
+  color: var(--border-primary);
 }
 
 input[type="password"]:focus,
 inpyt[type="text"]:focus {
   outline: 0;
-  border: 1px solid #a1a1a1;
+  border: 1px solid var(--border-primary);
 }
 
 input[type="submit"] {
@@ -91,9 +97,9 @@ input[type="submit"] {
   margin-top: 10px;
   height: 30px;
   border: 0;
-  background-color: #3c96ed;
+  background-color: var(--button-primary);
   border-radius: 4px;
-  color: #ffffff;
+  color: var(--white);
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -101,8 +107,8 @@ input[type="submit"] {
 }
 .infobox {
   height: 60px;
-  background-color: #fff;
-  border: 1px solid rgb(236, 234, 234);
+  background-color: var(--white);
+  border: 1px solid var(--border-primary);
   margin: 10px auto 0;
   display: flex;
   justify-content: center;
@@ -133,7 +139,7 @@ footer {
 }
 
 footer a {
-  color: #000;
+  color: var(--black);
   text-transform: uppercase;
   font-weight: bold;
   margin-right: 8px;
@@ -141,7 +147,7 @@ footer a {
 .text-small {
   font-size: 12px;
   font-weight: bold;
-  color: gray;
+  color: var(--border-primary);
   text-transform: uppercase;
   padding-left: 20px;
   display: inline-block;
@@ -170,8 +176,8 @@ footer a {
   width: 320px;
   margin: 10px 0;
   height: 35px;
-  background-color: #0095f6;
-  color: #ffffff;
+  background-color: var(--button-primary);
+  color: var(--white);
   border: 0;
   border-radius: 4px;
   font-size: 15px;
@@ -188,11 +194,48 @@ footer a {
 
 .line {
   height: 1px;
-  background-color: #e6e6e6;
+  background-color: var(--border-primary);
   width: 35%;
 }
 .divisor-tag {
   font-weight: bold;
   margin: 0 2.5%;
   color: #8e8e8e;
+}
+
+/* // Responsividade   */
+
+@media (max-width: 850px) {
+  .Left {
+    display: none;
+  }
+
+  #container {
+    width: 70%;
+  }
+  .Right {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  #container {
+    width: 90%;
+  }
+
+  #container-signup {
+    width: 90%;
+  }
+
+  input[type="password"],
+  input[type="submit"] {
+    width: 80%;
+  }
+
+  .cta-button {
+    width: 85%;
+  }
+  .message {
+    margin: 10px 25px;
+  }
 }
