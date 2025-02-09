@@ -1,77 +1,54 @@
-// // Criando funcooes
-// function mediaAluno() {
-//   var media = (nota1 + nota2) / 2;
+/*
+Abaixo de 17 Muito abaixo do peso
+Entre 17 e 18, 49 Abaixo do peso
+Entre 18,5 e 24.99 Peso normal
+Entre 25 e 29,99 Acima do peso
+*/
 
-//   if (media >= 7) {
-//     console.log("Aluno aprovado com a média: " + media);
-//   } else if (media < 7) {
-//     console.log("Aluno reprovado com a média: " + media);
-//   }
-// }
+// peso / (altura * altura)
 
-// // Criando Arrays
-// // 1) Buscando um registro em um array
-// var lista = ["Igor", "Clarice", "Flavia", "Lena"];
-// lista.indexOf("Igor");
+var peso;
+var altura;
+var imc;
+var resultado;
 
-// // 2) Acrescentando item na lista
-// lista.push("Edinete");
-// console.log(lista);
+function calcular(event) {
+  event.preventDefault();
 
-// // 3) Removendo o primeiro item da lista
-// lista.shift("Igor");
-// console.log(lista);
-// // 4) Removendo último item da lista
-// lista.pop("Lena");
-// console.log(lista);
+  peso = document.getElementById("peso").value;
+  altura = document.getElementById("altura").value;
 
-// // Loops
-// //1 - While = Enquanto
-// var x = 0;
-// while (x < 10) {
-//   document.write("<br> NO WHILE O valor de x é: " + x);
+  imc = peso / (altura * altura);
 
-//   x++;
-// }
+  resultado = document.getElementById("resultado");
 
-// //For = PARA
-
-// var valor = 10;
-
-// for (a = 0; a < valor; a++) {
-//   // O QUE TIVER AQUI DENTRO
-//   document.write("<br>NO FOR o Valor do a é: " + a);
-// }
-
-//SWITCH
-function Pedir() {
-  var valor = prompt("DIGITE UM VALOR DE 1 A 4");
-
-  switch (Number(valor)) {
-    case 1:
-      alert("Você escolheu 1 = Suco");
-      break;
-    case 2: {
-      alert("Você escolheu 2 = Agua gelada");
-      break;
-    }
-    case 3:
-      alert("Você escolheu 3 = Sorvete");
-      break;
-    case 4:
-      alert("Você chamou o garçon");
-      break;
-    default:
-      alert("Escolha uma opção entre 1 a 4.");
-      break;
+  if (imc < 17) {
+    resultado.innerHTML =
+      "<br> Seu resultado foi: " +
+      imc.toFixed(2) +
+      "<br> Cuidado você está muito abaixo do peso!";
+  } else if (imc > 17 && imc <= 18.49) {
+    resultado.innerHTML =
+      "<br> Seu resultado foi: " +
+      imc.toFixed(2) +
+      "<br> Cuidado você está abaixo do peso!";
+  } else if (imc >= 18.5 && imc < 24.99) {
+    resultado.innerHTML =
+      "<br> Seu resultado foi: " +
+      imc.toFixed(2) +
+      "<br> Você está no peso ideal!";
+  } else if (imc > 25 && imc <= 29.99) {
+    resultado.innerHTML =
+      "<br> Seu resultado foi: " +
+      imc.toFixed(2) +
+      "<br> Cuidado você está acima do peso!";
+  } else if (imc >= 30) {
+    resultado.innerHTML =
+      "<br> Seu resultado foi: " +
+      imc.toFixed(2) +
+      "<br> Cuidado você está na OBESIDADE!";
   }
-}
 
-// Condicionais
-var valor = 30;
-
-if (valor == 30) {
-  console.log("SIM O VALOR É IGUAL A 30");
-} else {
-  console.log("numero diferente de 30");
+  document.getElementById("peso").value = "";
+  document.getElementById("altura").value = "";
 }
