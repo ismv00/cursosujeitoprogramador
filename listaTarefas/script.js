@@ -2,7 +2,7 @@ let listElement = document.querySelector("#app ul");
 let inputElement = document.querySelector("#app input");
 let buttonElement = document.querySelector("#app button");
 
-let tarefas = [];
+let tarefas = JSON.parse(localStorage.getItem("@listaTarefas")) || [];
 
 function renderTarefas() {
   listElement.innerHTML = "";
@@ -27,6 +27,8 @@ function renderTarefas() {
   });
 }
 
+renderTarefas();
+
 function adcionarTarefas() {
   if (inputElement.value === "") {
     alert("Digite alguma tarefa!");
@@ -39,6 +41,8 @@ function adcionarTarefas() {
     inputElement.value = "";
 
     renderTarefas();
+
+    salvarDados();
   }
 }
 
@@ -47,4 +51,9 @@ buttonElement.onclick = adcionarTarefas;
 function deletarTarefa(posicao) {
   tarefas.splice(posicao, 1);
   renderTarefas();
+  salvarDados();
+}
+
+function salvarDados() {
+  localStorage.setItem("@listaTarefas", JSON.stringify(tarefas));
 }
