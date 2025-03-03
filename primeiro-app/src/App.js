@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [input, setInput] = useState("");
@@ -6,6 +6,21 @@ function App() {
     "Pagar conta de luz",
     "Estudar React JS",
   ]);
+
+  // Buscando os dados do localStorage
+  useEffect(() => {
+    const tarefasStorage = localStorage.getItem("@tarefa");
+
+    if (tarefasStorage) {
+      setTarefas(JSON.parse(tarefasStorage));
+    }
+
+    return () => {};
+  }, []);
+  //Salvando no localStorage
+  useEffect(() => {
+    localStorage.setItem("@tarefa", JSON.stringify(tarefas));
+  }, [tarefas]);
 
   function handleData(e) {
     e.preventDefault();
