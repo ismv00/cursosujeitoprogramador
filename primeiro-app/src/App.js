@@ -1,22 +1,17 @@
 import { useState } from "react";
 
 function App() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [idade, setIdade] = useState("");
-
-  const [user, setUser] = useState({});
+  const [input, setInput] = useState("");
+  const [tarefas, setTarefas] = useState([
+    "Pagar conta de luz",
+    "Estudar React JS",
+  ]);
 
   function handleData(e) {
     e.preventDefault();
 
-    alert("Usuário regisrado com sucesso.");
-
-    setUser({
-      nome: nome,
-      idade: idade,
-      email: email,
-    });
+    setTarefas([...tarefas, input]);
+    setInput("");
   }
 
   return (
@@ -24,30 +19,12 @@ function App() {
       <h1>Cadastrando usuário</h1>
 
       <form onSubmit={handleData}>
-        <label>Nome: </label>
+        <label>Nome da Tarefa </label>
         <br />
         <input
           placeholder="Digite seu nome"
-          value={nome}
-          onChange={(event) => setNome(event.target.value)}
-        />
-        <br />
-
-        <label>E-mail: </label>
-        <br />
-        <input
-          placeholder="Digite seu e-mail"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <br />
-
-        <label>Idade: </label>
-        <br />
-        <input
-          placeholder="Digite sua idade"
-          value={idade}
-          onChange={(event) => setIdade(event.target.value)}
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
         />
         <br />
 
@@ -57,12 +34,11 @@ function App() {
       <br />
       <br />
 
-      <div>
-        <span>Bem vindo: {user.nome}</span> <br />
-        <span>Idade: {user.idade}</span> <br />
-        <span>E-mail: {user.email}</span>
-        <br />
-      </div>
+      <ul>
+        {tarefas.map((tarefa) => (
+          <li key={tarefa}>{tarefa}</li>
+        ))}
+      </ul>
     </div>
   );
 }
