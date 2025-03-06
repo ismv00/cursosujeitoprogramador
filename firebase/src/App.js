@@ -7,12 +7,14 @@ import {
   addDoc,
   getDoc,
   getDocs,
+  updateDoc,
 } from "firebase/firestore";
 import "./app.css";
 
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+  const [idPost, setIdPost] = useState();
 
   const [posts, setPosts] = useState([]);
 
@@ -75,34 +77,58 @@ function App() {
         console.log(error);
       });
   }
+
+  async function editarPost() {
+    const docRef = doc(db, "posts", idPost);
+    await updateDoc(docRef, {
+      titulo: titulo,
+      autor: autor,
+    })
+      .then(() => {
+        console.log("POST ATUALIZADO");
+        setIdPost("");
+        setTitulo("");
+        setAutor("");
+      })
+      .catch(() => {
+        console.log("Erro ao atualizar o Post");
+      });
+  }
   return (
     <div>
       <h1>React + firebase </h1>
 
       <div class="container">
+        <label>ID do post:</label>
+        <input
+          placeholder="Digite o ID do post"
+          value={idPost}
+          onChange={(e) => setIdPost(e.target.value)}
+        />{" "}
+        <br />
         <label>titulo:</label>
         <textarea
           placeholder="Digite um t[itulo"
           value={titulo}
           onChange={(e) => setTitulo(e.target.value)}
         />
-
         <label>Autor:</label>
         <textarea
           placeholder="autor do Post"
           value={autor}
           onChange={(e) => setAutor(e.target.value)}
         />
-
         <button onClick={handleAdd}>Cadastrar</button>
         <button onClick={buscarPost}>Buscas Posts</button>
-
+        <br />
+        <button onClick={editarPost}>Atualizar Post</button>
         <ul>
           {posts.map((post) => {
             return (
               <li key={post.id}>
-                <span>Titulo: {post.titulo}</span>
-                <span>Autor:{post.autor}</span>
+                <strong>ID: {post.id}</strong> <br />
+                <span>Titulo: {post.titulo}</span> <br />
+                <span>Autor:{post.autor}</span> <br />
               </li>
             );
           })}
