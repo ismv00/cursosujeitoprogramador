@@ -1,4 +1,4 @@
-import { db } from "./firebaseConnection";
+import { db, auth } from "./firebaseConnection";
 import { useState, useEffect } from "react";
 import {
   doc,
@@ -11,6 +11,8 @@ import {
   deleteDoc,
   onSnapshot,
 } from "firebase/firestore";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import "./app.css";
 
 function App() {
@@ -19,6 +21,9 @@ function App() {
   const [idPost, setIdPost] = useState();
 
   const [posts, setPosts] = useState([]);
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   useEffect(() => {
     async function loadPosts() {
@@ -129,11 +134,53 @@ function App() {
         console.log("errro ao deletar post.");
       });
   }
+
+  //Cadastrando um usuário
+  async function novoUsuario() {
+    await createUserWithEmailAndPassword(auth, email, senha)
+      .then((value) => {
+        console.log("Cadastrado com sucesso");
+        setEmail("");
+        setSenha("");
+      })
+      //Casos de verificações
+      .catch((error) => {
+        if (error.code === "auth/weak-password") {
+          alert("Senha muito fraca.");
+        } else if (error.code === "auth/email-already-in-use") {
+          alert("E-mail já existe.");
+        }
+      });
+  }
   return (
     <div>
       <h1>React + firebase </h1>
 
       <div class="container">
+        <h2>Usuários</h2>
+        <label>Email</label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Digite seu e-mail"
+        />
+        <br />
+        <label>Senha</label>
+        <input
+          type="password"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          placeholder="Digite sua senha"
+        />
+
+        <button onClick={novoUsuario}>Cadastrar</button>
+      </div>
+
+      <br />
+      <br />
+      <hr />
+      <div class="container">
+        <h2>Posts</h2>
         <label>ID do post:</label>
         <input
           placeholder="Digite o ID do post"
