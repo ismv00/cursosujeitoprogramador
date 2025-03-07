@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import "./app.css";
 
@@ -94,6 +95,19 @@ function App() {
         console.log("Erro ao atualizar o Post");
       });
   }
+
+  //Deletando post
+  async function excluirPost(id) {
+    const docRef = doc(db, "posts", id);
+
+    await deleteDoc(docRef)
+      .then(() => {
+        alert("Post Deletado com sucesso.");
+      })
+      .catch(() => {
+        console.log("errro ao deletar post.");
+      });
+  }
   return (
     <div>
       <h1>React + firebase </h1>
@@ -129,6 +143,12 @@ function App() {
                 <strong>ID: {post.id}</strong> <br />
                 <span>Titulo: {post.titulo}</span> <br />
                 <span>Autor:{post.autor}</span> <br />
+                <br />
+                <button onClick={() => excluirPost(post.id)}>
+                  Excluir Post
+                </button>
+                <br />
+                <br />
               </li>
             );
           })}
