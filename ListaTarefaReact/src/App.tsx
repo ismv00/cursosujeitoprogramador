@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function App() {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -7,6 +7,13 @@ export default function App() {
     enabled: false,
     task: "",
   });
+
+  useEffect(() => {
+    const tarefasSalvas = localStorage.getItem("@cursoreact");
+    if (tarefasSalvas) {
+      setTasks(JSON.parse(tarefasSalvas));
+    }
+  }, []);
 
   function handleRegister() {
     if (!input) {
@@ -20,6 +27,8 @@ export default function App() {
 
     setTasks((tarefas) => [...tarefas, input]);
     setInput("");
+
+    localStorage.setItem("@cursoreact", JSON.stringify([...tasks, input]));
   }
 
   function handleSaveEdit() {
@@ -34,11 +43,15 @@ export default function App() {
     });
 
     setInput("");
+
+    localStorage.setItem("@cursoreact", JSON.stringify([allTasks]));
   }
 
   function deleteRegister(item: string) {
     const removeTask = tasks.filter((task) => task !== item);
     setTasks(removeTask);
+
+    localStorage.setItem("@cursoreact", JSON.stringify(removeTask));
   }
 
   function handleEdit(item: string) {
